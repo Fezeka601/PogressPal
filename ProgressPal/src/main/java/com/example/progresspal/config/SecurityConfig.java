@@ -1,5 +1,6 @@
 package com.example.progresspal.config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,15 +25,12 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
     public class SecurityConfig {
 
         private final UserDetailsService userDetailsService;
+        private final PasswordEncoder passwordEncoder;
 
-        public SecurityConfig(UserDetailsService userDetailsService) {
+        public SecurityConfig(UserDetailsService userDetailsService,
+                              PasswordEncoder passwordEncoder) {
             this.userDetailsService = userDetailsService;
-        }
-
-
-        @Bean
-        public PasswordEncoder passwordEncoder() {
-            return new BCryptPasswordEncoder();
+            this.passwordEncoder = passwordEncoder;
         }
 
 
@@ -40,7 +38,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
         public DaoAuthenticationProvider authenticationProvider() {
             DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
             provider.setUserDetailsService(userDetailsService);
-            provider.setPasswordEncoder(passwordEncoder());
+            provider.setPasswordEncoder(passwordEncoder);
             return provider;
         }
 
@@ -50,39 +48,47 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
             return config.getAuthenticationManager();
         }
 
-
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
             return http
-                    .csrf(csrf -> csrf.disable()) // disable for testing (enable later)
+                    .csrf(csrf -> csrf.disable())
+
+                    .cors(Customizer.withDefaults())
 
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/login", "/register", "/css/**", "/js/**").permitAll()
+                            .requestMatchers(
+                                    "/login",
+                                    "/api/auth/register"
+                            ).permitAll()
                             .anyRequest().authenticated()
                     )
 
-
                     .formLogin(form -> form
-                            .loginPage("/login") // your custom login page
-                            .defaultSuccessUrl("/dashboard", true)
-                            .permitAll()
+                            .loginProcessingUrl("/login")
+                            .successHandler((request, response, authentication) -> {
+                                response.setStatus(HttpServletResponse.SC_OK);
+                            })
+                            .failureHandler((request, response, exception) -> {
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                            })
                     )
 
+                    .exceptionHandling(ex -> ex
+                            .authenticationEntryPoint((request, response, authException) -> {
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                            })
+                    )
 
                     .logout(logout -> logout
-                            .logoutSuccessUrl("/login?logout")
-                            .permitAll()
+                            .logoutUrl("/api/auth/logout")
+                            .logoutSuccessHandler((request, response, authentication) -> {
+                                response.setStatus(HttpServletResponse.SC_OK);
+                            })
                     )
-
-
-                    .sessionManagement(session ->
-                            session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                    )
-
 
                     .authenticationProvider(authenticationProvider())
 
                     .build();
         }
     }
-
