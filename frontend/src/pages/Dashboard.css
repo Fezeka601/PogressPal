@@ -1,0 +1,298 @@
+.dashboard {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 45px 40px 60px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.dashboard-header h1 {
+    margin: 0 0 8px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+}
+
+.dashboard-header p {
+    margin: 0;
+    font-size: 18px;
+    color: #666;
+}
+
+
+/* =========================
+   ADD GOAL BUTTON
+========================= */
+
+.add-goal-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    background-color: #f8dce6;
+    color: #6d3048;
+
+    border: 1px solid #e8b8ca;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.add-goal-link:hover {
+    background-color: #f4cedc;
+}
+
+
+/* =========================
+   GOAL GRID
+========================= */
+
+.goal-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+
+    width: 100%;
+}
+
+
+/* =========================
+   GOAL CARD
+========================= */
+
+.goal-card {
+    box-sizing: border-box;
+
+    width: 100%;
+    min-height: 330px;
+
+    padding: 28px;
+
+    background-color: #ffffff;
+
+    border: 2px solid #f1c6d5;
+    border-radius: 14px;
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.goal-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 24px rgba(180, 100, 130, 0.10);
+}
+
+
+/* =========================
+   CARD TITLE
+========================= */
+
+.goal-card h2 {
+    margin: 0 0 10px;
+
+    font-size: 25px;
+    font-weight: 700;
+
+    color: #222;
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.goal-description {
+    margin: 0 0 22px;
+
+    font-size: 16px;
+    line-height: 1.5;
+
+    color: #666;
+}
+
+
+/* =========================
+   GOAL INFORMATION
+========================= */
+
+.goal-info {
+    margin-bottom: 20px;
+}
+
+.goal-info p {
+    margin: 8px 0;
+
+    font-size: 15px;
+
+    color: #555;
+}
+
+.goal-info strong {
+    color: #333;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-section {
+    margin-top: auto;
+    margin-bottom: 22px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 8px;
+
+    font-size: 15px;
+}
+
+.progress-header strong {
+    color: #333;
+}
+
+.progress-header span {
+    color: #777;
+    font-weight: 600;
+}
+
+
+/* Progress background */
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+
+    background-color: #f7e9ee;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+/* Actual progress */
+
+.progress-fill {
+    height: 100%;
+
+    background-color: #e8a9c0;
+
+    border-radius: 20px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   VIEW GOAL BUTTON
+========================= */
+
+.view-goal-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 44px;
+
+    box-sizing: border-box;
+
+    background-color: #f8dce6;
+    color: #6d3048;
+
+    border: 1px solid #e8b8ca;
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.view-goal-btn:hover {
+    background-color: #f4cedc;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    background-color: #ffffff;
+
+    border: 2px solid #f1c6d5;
+    border-radius: 14px;
+
+    padding: 50px;
+
+    text-align: center;
+}
+
+.empty-state h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.empty-state p {
+    color: #777;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 750px) {
+
+    .dashboard {
+        padding: 30px 20px 50px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .dashboard-header h1 {
+        font-size: 34px;
+    }
+
+    .goal-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

@@ -1,0 +1,224 @@
+.form-page {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 50px 20px 70px;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    width: 100%;
+    max-width: 650px;
+
+    background-color: #ffffff;
+
+    border: 2px solid #f1c6d5;
+    border-radius: 16px;
+
+    padding: 38px 42px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 8px 24px rgba(180, 100, 130, 0.08);
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+.form-card h1 {
+    margin: 0 0 8px;
+
+    font-size: 32px;
+    color: #222;
+}
+
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.form-subtitle {
+    margin: 0 0 30px;
+
+    color: #777;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-card form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 22px;
+}
+
+
+/* =========================
+   FORM GROUP
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #333;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 13px 14px;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    color: #333;
+
+    background-color: #fff;
+
+    border: 1.5px solid #e8b8ca;
+    border-radius: 8px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 120px;
+}
+
+
+/* =========================
+   FOCUS
+========================= */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+
+    border-color: #d98ca8;
+
+    box-shadow: 0 0 0 3px rgba(232, 184, 202, 0.25);
+}
+
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa;
+}
+
+
+/* =========================
+   CATEGORY + DATE
+========================= */
+
+.form-row {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+.save-goal-btn {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin-top: 5px;
+
+    border: 1px solid #e8b8ca;
+    border-radius: 8px;
+
+    background-color: #f8dce6;
+    color: #6d3048;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.save-goal-btn:hover {
+
+    background-color: #f4cedc;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .form-page {
+        padding: 30px 15px 50px;
+    }
+
+    .form-card {
+        padding: 28px 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+}
