@@ -1,9 +1,12 @@
 package com.example.progresspal.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
         import java.time.LocalDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 @Table(name = "users")
@@ -18,7 +21,7 @@ public class Users {
 
     @Column(nullable = false, unique = true)
     private String email;
-
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "password_hash", nullable = false)
     private String password;
 
